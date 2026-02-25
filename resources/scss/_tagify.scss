@@ -1,0 +1,204 @@
+@use "../../node_modules/@yaireo/tagify/dist/tagify";
+
+.tagify {
+    --tag-border-radius: 10px;
+    --tag-bg: var(--tw-colors-secondary-100);
+    --tag-hover: var(--tw-colors-secondary-100);
+    --tag-text-color: var(--tw-colors-secondary-100);
+    --tag-text-color--edit: black;
+    // --tag-pad: 0.2em 1em;
+    --tag-invalid-color: var(--tw-colors-danger-400);
+    --tag-invalid-bg: rgba(211, 148, 148, 0.5);
+    --tag-remove-bg: white;
+    --tag-remove-btn-color: white;
+    --tag-remove-btn-bg: rgb(var(--tw-colors-primary-400));
+    --tag-remove-btn-bg--hover: var(--tw-colors-danger-400);
+    --input-color: blue;
+    --tag--min-width: 1ch;
+    --tag--max-width: auto;
+    --tag-hide-transition: 0.2s;
+    --placeholder-color: gray;
+    --placeholder-color-focus: gray;
+    --loader-size: 0.8em;
+    --readonly-striped: 1;
+    display: inline-flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 4px;
+    line-height: 0;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    box-sizing: border-box;
+    transition: 0.1s;
+    --tag-inset-shadow-size: 70px;
+
+}
+
+.dark .tagify {
+    --tag-remove-bg: var(--tw-colors-dark-600);
+    --tag-hover: var(--tw-colors-dark-400);
+}
+
+// .tagify__tag > div
+
+.tagify--select .tagify__tag {
+    width: -webkit-fill-available;
+}
+
+.tagify__tag-text{
+    color: var(--tw-colors-secondary-900);
+    word-break: break-word;
+}
+
+.tags-look{
+    z-index: 75;
+}
+
+.tags-look .tagify__dropdown__item {
+    display: inline-flex;
+    width: 99.5%;
+    border-radius: 3px;
+    padding: 0.5em 0.5em;
+    border: 1px solid var(--tw-colors-secondary-500);
+    background: white;
+    margin: 0.2em;
+    font-size: 0.85em;
+    color: var(--tw-colors-secondary-800);
+    transition: 0.1s;
+    text-transform: capitalize;
+}
+
+.tags-look .tagify__dropdown__item--active {
+    font-weight: bold;
+    background: rgb(var(--tw-colors-primary-400));
+    color: #fff !important;
+}
+
+.tags-look .tagify__dropdown__item:hover {
+    color: #fff !important;
+    background: rgb(var(--tw-colors-primary-400));
+    border: 1px solid rgb(var(--tw-colors-primary-50));
+}
+
+.tags-look .tagify__dropdown__item--hidden {
+    max-width: 0;
+    max-height: initial;
+    // padding: 0.3em 0;
+    margin: 0.2em 0;
+    white-space: nowrap;
+    text-indent: -20px;
+    border: 0;
+}
+
+.tagify {
+    background-color: white;
+    &.tagify--select{
+        .tagify__input{
+            padding-left: 0;
+        }
+    }
+}
+.tagify__input {
+    color: black;
+    font-size: 14px;
+    margin-top: -2px; /* applied on mobile */
+}
+
+@media (min-width: 640px) {
+    .tagify__input {
+        margin-top: 0; /* remove on sm and above */
+    }
+}
+
+
+.tagify--notAllowed {
+    .tagify__tag__removeBtn {
+        background: var(--tag-remove-btn-bg--hover);
+        color: #222;
+    }
+}
+
+
+.tagify__tag > div {
+    color: var(--tw-colors-secondary-900) !important;
+    cursor: default;
+    border: 1px solid transparent;
+}
+
+.tagify__tag {
+    &:hover {
+        div {
+            color: white !important;
+        }
+    }
+}
+
+.tagify__tag {
+    color: var(--tw-colors-secondary-500) !important;
+    cursor: default;
+    border: 1px solid transparent;
+    border-radius: 10px;
+}
+
+.tagify__tag__removeBtn {
+    &:hover {
+
+        .tagify__tag{
+            border: none !important;
+        }
+
+        + div {
+            color: black !important;
+
+            &::before {
+                color: black !important;
+                border: 1px solid var(--tw-colors-danger-400);
+            }
+        }
+    }
+}
+
+.dark{
+    .tagify{
+        --tag-bg: var(--tw-colors-dark-400);
+    }
+    .tagify__input{
+        color: white;
+        font-size: 14px;
+    }
+    .tagify__tag-text{
+    color: var(--tw-colors-secondary-700);
+    }
+    .tags-look .tagify__dropdown__item {
+    display: inline-flex;
+    width: 99.5%;
+    border-radius: 3px;
+    padding: 0.5em 0.5em;
+    border: 1px solid #8b8b8b;
+    background: var(--tw-colors-transperent);
+    margin: 0.1em;
+    font-size: 0.85em;
+    color: var(--tw-colors-secondary-500);
+    transition: 0.1s;
+        &:hover{
+            background: var(--tw-colors-dark-600);
+        }
+    }
+    .tags-look .tagify__dropdown__item--active {
+        font-weight: bold;
+        background: var(--tw-colors-dark-600);
+        color: #fff !important;
+    }
+    .tagify__dropdown__wrapper{
+        background-color: var(--tw-colors-dark-800);
+        color: white;
+    }
+    .tagify {
+        background-color: var(--tw-colors-dark-600);
+        border: 1px solid #9ca3af;
+    }
+    .tagify--select::after{
+        color: var(--tw-colors-secondary-800);    
+    }
+}
